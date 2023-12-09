@@ -27,23 +27,23 @@
                                     <ColumnDefinition></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                             
-                                <Button x:Name="InputLine" Grid.Row ="0" Grid.Column="0" Click="Input">
+                                <Button Grid.Row ="0" Grid.Column="0" Click="Input">
                                     <TextBlock TextAlignment ="Center" FontSize ="16">Ввести новую прямую</TextBlock>
                                 </Button>
-                                <Button x:Name="ShowLine" Grid.Row ="1" Grid.Column="0">
+                                <Button Grid.Row ="1" Grid.Column="0" Click="Show">
                                     <TextBlock TextAlignment ="Center" FontSize ="16">Показать все прямые</TextBlock>
                                 </Button>
-                                <Button x:Name="DoWithLine" Grid.Row ="2" Grid.Column="0">
+                                <Button Grid.Row ="2" Grid.Column="0" Click="Do">
                                     <TextBlock TextWrapping="Wrap" TextAlignment ="Center" FontSize ="16">Действия с двумя прямыми</TextBlock>
                                 </Button>
-                                <Button x:Name="OxOy" Grid.Row ="3" Grid.Column="0" >
+                                <Button Grid.Row ="3" Grid.Column="0" >
                                     <TextBlock TextWrapping="Wrap" TextAlignment ="Center" Height="60" Width="160" FontSize ="16" Text="Точки пересечения прямой с осями"/>
                                 </Button>
                                 <Button Width="120" Height="50" x:Name="Exit" Grid.Row ="4" Grid.Column="0" Margin="0,10,0,-10" Click="ExitClick">
                                     <TextBlock TextWrapping="Wrap" TextAlignment ="Center" FontSize ="16">Выход</TextBlock>
                                 </Button>
                             </Grid>
-                            <Grid Width="180" Height="350" Visibility="Visible" Name="InputMenu" >
+                            <Grid Width="180" Height="350" Visibility="Hidden" Name="InputMenu" >
                                 <TextBlock Text="Введите прямую" Height="30" FontSize="15" TextAlignment="Center" Margin="0 -300 0 0"/>
                                 <TextBlock Text="(ax + by + c = 0)" Height="30" FontSize="13" TextAlignment="Center" Margin="0 -265 0 0"/>
                                 <Grid Width="130" Height="130" Margin="0 0 0 60">
@@ -71,7 +71,69 @@
                                     <TextBlock FontSize="16" TextAlignment="Center">Назад</TextBlock>
                                 </Button>
                             </Grid>
-                            
+                            <Grid Width="180" Height="350" Visibility="Hidden" Name="ShowAll">
+                                <TextBlock Text="Текущии линии" Height="30" FontSize="15" TextAlignment="Center" Margin="0 -300 0 0"/>
+                                <Button IsCancel="True" Click="Back" Width="120" Height="50" Margin="0,260,0,0"  VerticalAlignment="Center">
+                                    <TextBlock FontSize="16" TextAlignment="Center">Назад</TextBlock>
+                                </Button>
+                                <Grid Width="159" Height="200" Margin="0 0 0 30">
+                                    <ListBox FontSize="13" x:Name="ArrayLines">
+                                        
+                                    </ListBox>
+                                </Grid>
+                            </Grid>
+                            <Grid Width="180" Height="350" Visibility="Visible" Name="DoMain">
+                                <Grid  Name="MenuDo" Visibility="Hidden">
+                                    <Button IsCancel="True" Click="Back" Width="120" Height="50" Margin="0,260,0,0"  VerticalAlignment="Center">
+                                        <TextBlock FontSize="16" TextAlignment="Center">Назад</TextBlock>
+                                    </Button>
+                                    <Grid Height="150" Width="120" Margin="0 0 0 50">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Button Grid.Row ="0" Grid.Column="0" Click="ParMenu">
+                                            <TextBlock TextAlignment ="Center" FontSize ="14">Параллельность</TextBlock>
+                                        </Button>
+                                        <TextBlock TextWrapping="Wrap" Text="Действия с прямыми" Height="40" FontSize="15" TextAlignment="Center" Margin="0 -160 0 0"/>
+                                        <Button Grid.Row ="1" Grid.Column="0" Click="PerMenu">
+                                            <TextBlock TextAlignment ="Center" FontSize ="11">Перпендикулярность</TextBlock>
+                                        </Button>
+                                        <Button Grid.Row ="2" Grid.Column="0">
+                                            <TextBlock TextWrapping="Wrap" TextAlignment ="Center" FontSize ="13">Угол между прямыми</TextBlock>
+                                        </Button>
+                                    </Grid>
+                                </Grid>
+                                <Grid Name="ShowAllDo" Visibility="Visible">
+                                    <Grid Width="160" Height="200" Margin="0 0 0 70">
+                                        <ListBox FontSize="13" x:Name="ArrayDo"/>
+                                    </Grid>
+                                    
+                                </Grid>
+                                <Grid Name="ParInput" Visibility="Visible">
+                                    <TextBlock Text="Параллельность" Height="30" FontSize="15" TextAlignment="Center" Margin="0 -300 0 0"/>
+                                    <Button Click="Par" Width="80" Height="20" Margin="0,163,0,0" Background="White" BorderBrush="LightGray">
+                                        <TextBlock FontSize="9" TextAlignment="Center" Text="Выбрать линии"/>
+                                    </Button>
+                                    <Button IsCancel="True" Click="BackDo" Width="120" Height="50" Margin="0,260,0,0"  VerticalAlignment="Center">
+                                        <TextBlock FontSize="16" TextAlignment="Center">Назад</TextBlock>
+                                    </Button>
+                                </Grid>
+                                <Grid Name="PerInput" Visibility="Hidden">
+                                    <TextBlock Text="Перпендикулярность" Height="30" FontSize="15" TextAlignment="Center" Margin="0 -300 0 0"/>
+                                    <Button Click="Per" Width="80" Height="20" Margin="0,163,0,0" Background="White" BorderBrush="LightGray">
+                                        <TextBlock FontSize="9" TextAlignment="Center" Text="Выбрать линии"/>
+                                    </Button>
+                                    <Button IsCancel="True" Click="BackDo" Width="120" Height="50" Margin="0,260,0,0"  VerticalAlignment="Center">
+                                        <TextBlock FontSize="16" TextAlignment="Center">Назад</TextBlock>
+                                    </Button>
+                                </Grid>
+
+                            </Grid>
                         </Grid>
                     </DockPanel>
                 </Border>
