@@ -18,7 +18,8 @@ namespace ProgramGuiLine
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    /// маму трахал и в рот тоже
+    /// маму трахал и в рот тоже 
+    /// опа попа
     public partial class MainWindow : Window
     {
         public MainWindow()
