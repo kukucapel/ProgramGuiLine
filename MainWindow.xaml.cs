@@ -55,6 +55,12 @@ namespace ProgramGuiLine
             ShowAllDo.Visibility = Visibility.Visible;
             PerInput.Visibility = Visibility.Visible;  
         }
+        private void CornerMenu(object sender, RoutedEventArgs e)
+        {
+            MenuDo.Visibility = Visibility.Hidden;
+            ShowAllDo.Visibility = Visibility.Visible;
+            CornerInput.Visibility = Visibility.Visible;
+        }
         private void Per(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Per");
@@ -63,12 +69,26 @@ namespace ProgramGuiLine
         {
             MessageBox.Show("Par");
         }
+        private void Corner(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Угол");
+        }
         private void BackDo(object sender, RoutedEventArgs e)
         {
             MenuDo.Visibility = Visibility.Visible;
             ParInput.Visibility = Visibility.Hidden;
             PerInput.Visibility = Visibility.Hidden;
             ShowAllDo.Visibility = Visibility.Hidden;
+            CornerInput.Visibility = Visibility.Hidden;
+        }
+        private void OxOyInput(object sender, RoutedEventArgs e)
+        {
+            MainMenu.Visibility = Visibility.Hidden;
+            OxOyMenu.Visibility = Visibility.Visible;
+        }
+        private void OxOy(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("OxOy");
         }
         private void Back(object sender, RoutedEventArgs e)
         {
@@ -77,6 +97,7 @@ namespace ProgramGuiLine
             ShowAll.Visibility = Visibility.Hidden;
             DoMain.Visibility = Visibility.Hidden;
             ShowAllDo.Visibility = Visibility.Hidden;
+            OxOyMenu.Visibility = Visibility.Hidden;
         }
         private void ExitClick(object sender, RoutedEventArgs e)
         {

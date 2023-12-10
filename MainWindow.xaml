@@ -36,7 +36,7 @@
                                 <Button Grid.Row ="2" Grid.Column="0" Click="Do">
                                     <TextBlock TextWrapping="Wrap" TextAlignment ="Center" FontSize ="16">Действия с двумя прямыми</TextBlock>
                                 </Button>
-                                <Button Grid.Row ="3" Grid.Column="0" >
+                                <Button Grid.Row ="3" Grid.Column="0" Click="OxOyInput">
                                     <TextBlock TextWrapping="Wrap" TextAlignment ="Center" Height="60" Width="160" FontSize ="16" Text="Точки пересечения прямой с осями"/>
                                 </Button>
                                 <Button Width="120" Height="50" x:Name="Exit" Grid.Row ="4" Grid.Column="0" Margin="0,10,0,-10" Click="ExitClick">
@@ -103,18 +103,18 @@
                                         <Button Grid.Row ="1" Grid.Column="0" Click="PerMenu">
                                             <TextBlock TextAlignment ="Center" FontSize ="11">Перпендикулярность</TextBlock>
                                         </Button>
-                                        <Button Grid.Row ="2" Grid.Column="0">
+                                        <Button Grid.Row ="2" Grid.Column="0" Click="CornerMenu">
                                             <TextBlock TextWrapping="Wrap" TextAlignment ="Center" FontSize ="13">Угол между прямыми</TextBlock>
                                         </Button>
                                     </Grid>
                                 </Grid>
-                                <Grid Name="ShowAllDo" Visibility="Visible">
+                                <Grid Name="ShowAllDo" Visibility="Hidden">
                                     <Grid Width="160" Height="200" Margin="0 0 0 70">
                                         <ListBox FontSize="13" x:Name="ArrayDo"/>
                                     </Grid>
                                     
                                 </Grid>
-                                <Grid Name="ParInput" Visibility="Visible">
+                                <Grid Name="ParInput" Visibility="Hidden">
                                     <TextBlock Text="Параллельность" Height="30" FontSize="15" TextAlignment="Center" Margin="0 -300 0 0"/>
                                     <Button Click="Par" Width="80" Height="20" Margin="0,163,0,0" Background="White" BorderBrush="LightGray">
                                         <TextBlock FontSize="9" TextAlignment="Center" Text="Выбрать линии"/>
@@ -132,7 +132,28 @@
                                         <TextBlock FontSize="16" TextAlignment="Center">Назад</TextBlock>
                                     </Button>
                                 </Grid>
+                                <Grid Name ="CornerInput" Visibility="Hidden">
+                                    <TextBlock Text="Угол между прямыми" Height="30" FontSize="15" TextAlignment="Center" Margin="0 -300 0 0"/>
+                                    <Button Click="Corner" Width="80" Height="20" Margin="0,163,0,0" Background="White" BorderBrush="LightGray">
+                                        <TextBlock FontSize="9" TextAlignment="Center" Text="Выбрать линии"/>
+                                    </Button>
+                                    <Button IsCancel="True" Click="BackDo" Width="120" Height="50" Margin="0,260,0,0"  VerticalAlignment="Center">
+                                        <TextBlock FontSize="16" TextAlignment="Center">Назад</TextBlock>
+                                    </Button>
+                                </Grid>
 
+                            </Grid>
+                            <Grid Name="OxOyMenu">
+                                <TextBlock Text="Точки пересечения с осями" TextWrapping="Wrap" Height="30" FontSize="13" TextAlignment="Center" Margin="0 -300 0 0"/>
+                                <Button IsCancel="True" Click="Back" Width="120" Height="50" Margin="0,260,0,0"  VerticalAlignment="Center">
+                                    <TextBlock FontSize="16" TextAlignment="Center">Назад</TextBlock>
+                                </Button>
+                                <Button Click="OxOy" Width="80" Height="20" Margin="0,163,0,0" Background="White" BorderBrush="LightGray">
+                                    <TextBlock FontSize="9" TextAlignment="Center" Text="Выбрать линию"/>
+                                </Button>
+                                <Grid Width="160" Height="200" Margin="0 0 0 70">
+                                    <ListBox FontSize="13" x:Name="ArrayYX"/>
+                                </Grid>
                             </Grid>
                         </Grid>
                     </DockPanel>
