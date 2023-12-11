@@ -12,16 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LbOne;
 
 namespace ProgramGuiLine
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
-    /// маму трахал и в рот тоже 
-    /// опа попа
+    
     public partial class MainWindow : Window
     {
+        private DataBase db = new DataBase();
         public MainWindow()
         {
             InitializeComponent();
@@ -31,6 +29,24 @@ namespace ProgramGuiLine
             MainMenu.Visibility = Visibility.Hidden;
             InputMenu.Visibility = Visibility.Visible;
         }
+        private void InputText(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                db.NewLine(Convert.ToDouble(a.Text), Convert.ToDouble(b.Text), Convert.ToDouble(c.Text));
+                //MessageBox.Show("Значения введены");
+                a.Text = String.Empty;
+                b.Text = String.Empty;
+                c.Text = String.Empty;
+                ArrayLines.Items.Add(db.Lines[db.Count-1].PrintAll());
+                ArrayDo.Items.Add(db.Lines[db.Count - 1].PrintAll());
+                ArrayYX.Items.Add(db.Lines[db.Count - 1].PrintAll());
+            }
+            catch
+            {
+                MessageBox.Show("Что-то пошло не так");
+            }
+        }
         private void Show(object sender, RoutedEventArgs e)
         {
             MainMenu.Visibility = Visibility.Hidden;
@@ -38,9 +54,16 @@ namespace ProgramGuiLine
         }
         private void Do(object sender, RoutedEventArgs e)
         {
-            DoMain.Visibility = Visibility.Visible;
-            MainMenu.Visibility = Visibility.Hidden;
-            MenuDo.Visibility = Visibility.Visible;
+            if (db.Count < 2)
+            {
+                MessageBox.Show("У вас меньше двух линий");
+            }
+            else
+            {
+                DoMain.Visibility = Visibility.Visible;
+                MainMenu.Visibility = Visibility.Hidden;
+                MenuDo.Visibility = Visibility.Visible;
+            }
         }
         
         private void ParMenu(object sender, RoutedEventArgs e)
@@ -61,13 +84,73 @@ namespace ProgramGuiLine
             ShowAllDo.Visibility = Visibility.Visible;
             CornerInput.Visibility = Visibility.Visible;
         }
-        private void Per(object sender, RoutedEventArgs e)
+        private void PerOne(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Per");
+            db.Index = ArrayDo.SelectedIndex;
+            perbut.Visibility = Visibility.Visible;
         }
-        private void Par(object sender, RoutedEventArgs e)
+        private void PerTwo(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Par");
+            if (ArrayDo.SelectedIndex == db.Index)
+            {
+                MessageBox.Show("Выберете разные линии");
+            }
+            else
+            {
+                if (db.Lines[db.Index].CheckPer(db.Lines[db.Index], db.Lines[ArrayDo.SelectedIndex]))
+                {
+                    MessageBox.Show("Прямые перпендикулярны");
+                }
+                else
+                {
+                    MessageBox.Show("Прямые не перпендикулярны");
+                }
+            }
+            perbut.Visibility = Visibility.Hidden;
+            ArrayDo.SelectedIndex = -1;
+        }
+        private void ParOne(object sender, RoutedEventArgs e)
+        {
+            db.Index = ArrayDo.SelectedIndex;
+            parbut.Visibility = Visibility.Visible;
+        }
+        private void ParTwo(object sender, RoutedEventArgs e)
+        {
+            if (ArrayDo.SelectedIndex == db.Index)
+            {
+                MessageBox.Show("Выберете разные линии");
+            }
+            else
+            {
+                if (db.Lines[db.Index].CheckPar(db.Lines[db.Index], db.Lines[ArrayDo.SelectedIndex]))
+                {
+                    MessageBox.Show("Прямые параллельны");
+                }
+                else
+                {
+                    MessageBox.Show("Прямые не параллельны");
+                }
+            }
+            parbut.Visibility = Visibility.Hidden;
+            ArrayDo.SelectedIndex = -1;
+        }
+        private void CornerOne(object sender, RoutedEventArgs e)
+        {
+            db.Index = ArrayDo.SelectedIndex;
+            cornerbut.Visibility = Visibility.Visible;
+        }
+        private void CornerTwo(object sender, RoutedEventArgs e)
+        {
+            if (ArrayDo.SelectedIndex == db.Index)
+            {
+                MessageBox.Show("Выберете разные линии");
+            }
+            else
+            {
+                MessageBox.Show(Convert.ToString(db.Lines[db.Index].PrintCorner(db.Lines[db.Index], db.Lines[ArrayDo.SelectedIndex])));
+            }
+            cornerbut.Visibility = Visibility.Hidden;
+            ArrayDo.SelectedIndex = -1;
         }
         private void Corner(object sender, RoutedEventArgs e)
         {
@@ -80,6 +163,9 @@ namespace ProgramGuiLine
             PerInput.Visibility = Visibility.Hidden;
             ShowAllDo.Visibility = Visibility.Hidden;
             CornerInput.Visibility = Visibility.Hidden;
+            perbut.Visibility = Visibility.Hidden;
+            parbut.Visibility = Visibility.Hidden;
+            cornerbut.Visibility = Visibility.Hidden;
         }
         private void OxOyInput(object sender, RoutedEventArgs e)
         {
@@ -88,7 +174,8 @@ namespace ProgramGuiLine
         }
         private void OxOy(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("OxOy");
+            MessageBox.Show(db.Lines[ArrayYX.SelectedIndex].PrintXY());
+            ArrayYX.SelectedIndex = -1;
         }
         private void Back(object sender, RoutedEventArgs e)
         {

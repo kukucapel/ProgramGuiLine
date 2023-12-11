@@ -60,11 +60,11 @@
                                     <TextBlock Text="a" Grid.Column="0" Grid.Row="0" FontSize="27" TextAlignment="Center"/>
                                     <TextBlock Text="b" Grid.Column="0" Grid.Row="1" FontSize="27" TextAlignment="Center"/>
                                     <TextBlock Text="c" Grid.Column="0" Grid.Row="2" FontSize="27" TextAlignment="Center"/>
-                                    <TextBox Grid.Column="1" Grid.Row="0" FontSize="20" Width="60" Height="40" MaxLength="5" TextAlignment="Center"/>
-                                    <TextBox Grid.Column="1" Grid.Row="1" FontSize="20" Width="60" Height="40" MaxLength="5" TextAlignment="Center"/>
-                                    <TextBox Grid.Column="1" Grid.Row="2" FontSize="20" Width="60" Height="40" MaxLength="5" TextAlignment="Center"/>
+                                    <TextBox x:Name="a" Grid.Column="1" Grid.Row="0" FontSize="20" Width="60" Height="40" MaxLength="5" TextAlignment="Center"/>
+                                    <TextBox x:Name="b" Grid.Column="1" Grid.Row="1" FontSize="20" Width="60" Height="40" MaxLength="5" TextAlignment="Center"/>
+                                    <TextBox x:Name="c" Grid.Column="1" Grid.Row="2" FontSize="20" Width="60" Height="40" MaxLength="5" TextAlignment="Center"/>
                                 </Grid>
-                                <Button  Width="80" Height="35" Margin="0,130,0,0" Background="White" BorderBrush="LightGray">
+                                <Button Click="InputText" Width="80" Height="35" Margin="0,130,0,0" Background="White" BorderBrush="LightGray">
                                     <TextBlock FontSize="9" TextAlignment="Center" Text="Ввести значения"/>
                                 </Button>
                                 <Button IsCancel="True" Click="Back" Width="120" Height="50" Margin="0,260,0,0"  VerticalAlignment="Center">
@@ -77,8 +77,15 @@
                                     <TextBlock FontSize="16" TextAlignment="Center">Назад</TextBlock>
                                 </Button>
                                 <Grid Width="159" Height="200" Margin="0 0 0 30">
-                                    <ListBox FontSize="13" x:Name="ArrayLines">
-                                        
+                                    <ListBox FontSize="13" x:Name="ArrayLines" Focusable="True">
+                                        <ListBox.ItemContainerStyle>
+
+                                            <Style TargetType="{x:Type ListBoxItem}">
+
+                                                <Setter Property="Focusable" Value="False"/>
+                                            </Style>
+
+                                         </ListBox.ItemContainerStyle>
                                     </ListBox>
                                 </Grid>
                             </Grid>
@@ -108,7 +115,7 @@
                                         </Button>
                                     </Grid>
                                 </Grid>
-                                <Grid Name="ShowAllDo" Visibility="Hidden">
+                                <Grid Name="ShowAllDo" Visibility="Visible">
                                     <Grid Width="160" Height="200" Margin="0 0 0 70">
                                         <ListBox FontSize="13" x:Name="ArrayDo"/>
                                     </Grid>
@@ -116,17 +123,24 @@
                                 </Grid>
                                 <Grid Name="ParInput" Visibility="Hidden">
                                     <TextBlock Text="Параллельность" Height="30" FontSize="15" TextAlignment="Center" Margin="0 -300 0 0"/>
-                                    <Button Click="Par" Width="80" Height="20" Margin="0,163,0,0" Background="White" BorderBrush="LightGray">
-                                        <TextBlock FontSize="9" TextAlignment="Center" Text="Выбрать линии"/>
+                                    <Button Click="ParOne" Width="105" Height="20" Margin="0,163,0,0" Background="White" BorderBrush="LightGray">
+                                        <TextBlock FontSize="9" TextAlignment="Center" Text="Выбрать первую линию"/>
+                                    </Button>
+                                    <Button x:Name="parbut" Visibility="Hidden" Click="ParTwo" Width="105" Height="20" Margin="0,163,0,0" Background="White" BorderBrush="LightGray">
+                                        <TextBlock FontSize="9" TextAlignment="Center" Text="Выбрать вторую линию"/>
                                     </Button>
                                     <Button IsCancel="True" Click="BackDo" Width="120" Height="50" Margin="0,260,0,0"  VerticalAlignment="Center">
                                         <TextBlock FontSize="16" TextAlignment="Center">Назад</TextBlock>
                                     </Button>
                                 </Grid>
-                                <Grid Name="PerInput" Visibility="Hidden">
+                                <Grid Name="PerInput" Visibility="Visible">
+                                    
                                     <TextBlock Text="Перпендикулярность" Height="30" FontSize="15" TextAlignment="Center" Margin="0 -300 0 0"/>
-                                    <Button Click="Per" Width="80" Height="20" Margin="0,163,0,0" Background="White" BorderBrush="LightGray">
-                                        <TextBlock FontSize="9" TextAlignment="Center" Text="Выбрать линии"/>
+                                    <Button Click="PerOne" Width="105" Height="20" Margin="0,163,0,0" Background="White" BorderBrush="LightGray">
+                                        <TextBlock FontSize="9" TextAlignment="Center" Text="Выбрать первую линию"/>
+                                    </Button>
+                                    <Button x:Name="perbut" Visibility="Hidden" Click="PerTwo" Width="105" Height="20" Margin="0,163,0,0" Background="White" BorderBrush="LightGray">
+                                        <TextBlock FontSize="9" TextAlignment="Center" Text="Выбрать вторую линию"/>
                                     </Button>
                                     <Button IsCancel="True" Click="BackDo" Width="120" Height="50" Margin="0,260,0,0"  VerticalAlignment="Center">
                                         <TextBlock FontSize="16" TextAlignment="Center">Назад</TextBlock>
@@ -134,8 +148,11 @@
                                 </Grid>
                                 <Grid Name ="CornerInput" Visibility="Hidden">
                                     <TextBlock Text="Угол между прямыми" Height="30" FontSize="15" TextAlignment="Center" Margin="0 -300 0 0"/>
-                                    <Button Click="Corner" Width="80" Height="20" Margin="0,163,0,0" Background="White" BorderBrush="LightGray">
-                                        <TextBlock FontSize="9" TextAlignment="Center" Text="Выбрать линии"/>
+                                    <Button Click="CornerOne" Width="105" Height="20" Margin="0,163,0,0" Background="White" BorderBrush="LightGray">
+                                        <TextBlock FontSize="9" TextAlignment="Center" Text="Выбрать первую линии"/>
+                                    </Button>
+                                    <Button x:Name="cornerbut" Visibility="Hidden" Click="CornerTwo" Width="105" Height="20" Margin="0,163,0,0" Background="White" BorderBrush="LightGray">
+                                        <TextBlock FontSize="9" TextAlignment="Center" Text="Выбрать вторую линию"/>
                                     </Button>
                                     <Button IsCancel="True" Click="BackDo" Width="120" Height="50" Margin="0,260,0,0"  VerticalAlignment="Center">
                                         <TextBlock FontSize="16" TextAlignment="Center">Назад</TextBlock>
@@ -143,7 +160,7 @@
                                 </Grid>
 
                             </Grid>
-                            <Grid Name="OxOyMenu">
+                            <Grid Name="OxOyMenu" Visibility="Hidden">
                                 <TextBlock Text="Точки пересечения с осями" TextWrapping="Wrap" Height="30" FontSize="13" TextAlignment="Center" Margin="0 -300 0 0"/>
                                 <Button IsCancel="True" Click="Back" Width="120" Height="50" Margin="0,260,0,0"  VerticalAlignment="Center">
                                     <TextBlock FontSize="16" TextAlignment="Center">Назад</TextBlock>
