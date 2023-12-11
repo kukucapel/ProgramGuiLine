@@ -8,9 +8,9 @@ namespace LbOne
 {
     public class Line
     {
-        private double a;
-        private double b;
-        private double c;
+        public double a;
+        public double b;
+        public double c;
         private double k;
         private double m;
         public Line(double a, double b, double c)
@@ -23,8 +23,30 @@ namespace LbOne
         }
         public string PrintAll()
         {
-            string temp = a + "x + " + b + "y + " + c + " = 0";
-            return temp;
+            //string temp = a + "x +" + b + "y + " + c + " = 0";
+            string result = "";
+            if (a != 0)
+            {
+                result = a + "x";
+            }
+            if (b > 0)
+            {
+                result += " + " + b + "y";
+            }
+            else if (b < 0)
+            {
+                result += " - " + Math.Abs(b) + "y";
+            }
+            if (c > 0)
+            {
+                result += " + " + c;
+            }
+            else if (c < 0)
+            {
+                result += " - " + Math.Abs(c);
+            }
+            result += " = 0";
+            return result;
         }
         public double PrintX()
         {
@@ -222,6 +244,19 @@ namespace LbOne
             Count++;
             Array.Resize(ref Lines, Count);
             Lines[Count - 1] = new Line(a, b, c);
+        }
+        public bool Checker(double a, double b, double c, DataBase db)
+        {
+            bool result = true;
+            for (int i = 0; i < Count; i++)
+            {
+                if ((db.Lines[i].a == a) && (db.Lines[i].b == b) && (db.Lines[i].c == c))
+                {
+                    result = false;
+                    break;
+                }
+            }
+            return result;
         }
     }
 }

@@ -31,21 +31,36 @@ namespace ProgramGuiLine
         }
         private void InputText(object sender, RoutedEventArgs e)
         {
-            try
+            if ((Convert.ToDouble(a.Text) == 0) && (Convert.ToDouble(b.Text) == 0) && (Convert.ToDouble(c.Text) == 0))
             {
-                db.NewLine(Convert.ToDouble(a.Text), Convert.ToDouble(b.Text), Convert.ToDouble(c.Text));
-                //MessageBox.Show("Значения введены");
-                a.Text = String.Empty;
-                b.Text = String.Empty;
-                c.Text = String.Empty;
-                ArrayLines.Items.Add(db.Lines[db.Count-1].PrintAll());
-                ArrayDo.Items.Add(db.Lines[db.Count - 1].PrintAll());
-                ArrayYX.Items.Add(db.Lines[db.Count - 1].PrintAll());
+                MessageBox.Show("Введите хотя бы одно значение отличное от 0");
             }
-            catch
+            else
             {
-                MessageBox.Show("Что-то пошло не так");
+                try
+                {
+                    if (db.Checker(Convert.ToDouble(a.Text), Convert.ToDouble(b.Text), Convert.ToDouble(c.Text), db))
+                    {
+                        db.NewLine(Convert.ToDouble(a.Text), Convert.ToDouble(b.Text), Convert.ToDouble(c.Text));
+                        //MessageBox.Show("Значения введены");
+                        a.Text = String.Empty;
+                        b.Text = String.Empty;
+                        c.Text = String.Empty;
+                        ArrayLines.Items.Add(db.Lines[db.Count - 1].PrintAll());
+                        ArrayDo.Items.Add(db.Lines[db.Count - 1].PrintAll());
+                        ArrayYX.Items.Add(db.Lines[db.Count - 1].PrintAll());
+                    }
+                    else
+                    {
+                        MessageBox.Show("Такая линия уже существует");
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Что-то пошло не так");
+                }
             }
+            
         }
         private void Show(object sender, RoutedEventArgs e)
         {

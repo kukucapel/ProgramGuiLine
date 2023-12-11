@@ -7,14 +7,20 @@
         mc:Ignorable="d"
         ResizeMode="NoResize"
         Title="MainWindow" Height="450" Width="300">
-    <Border BorderBrush="Black" BorderThickness="4">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Foreground" Value="Black" />
+        </Style>
+    </Window.Resources>
+    <Border BorderBrush="Black" BorderThickness="4" CornerRadius="0">
         <Grid>
             <Grid Width="200" Height="400" HorizontalAlignment="Center">
-                <Border BorderBrush="Black" BorderThickness="2">
+                <Border BorderBrush="Black" BorderThickness="2" CornerRadius="5">
                     <DockPanel LastChildFill="True" Width="200" Height="400" HorizontalAlignment="Center">
                         <TextBlock DockPanel.Dock="Top" FontSize="30" Width="201" Height="40" TextAlignment="Center">LINES</TextBlock>
                         <Grid>
-                            <Grid Width="180" Height="300" Visibility="Hidden" DockPanel.Dock="Top" Name="MainMenu">
+                            <Grid Width="180" Height="300" Visibility="Visible" DockPanel.Dock="Top" Name="MainMenu">
                                 <Grid.RowDefinitions>
                                     <RowDefinition></RowDefinition>
                                     <RowDefinition></RowDefinition>
@@ -26,7 +32,7 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                            
+                               
                                 <Button Grid.Row ="0" Grid.Column="0" Click="Input">
                                     <TextBlock TextAlignment ="Center" FontSize ="16">Ввести новую прямую</TextBlock>
                                 </Button>
@@ -89,7 +95,7 @@
                                     </ListBox>
                                 </Grid>
                             </Grid>
-                            <Grid Width="180" Height="350" Visibility="Visible" Name="DoMain">
+                            <Grid Width="180" Height="350" Visibility="Hidden" Name="DoMain">
                                 <Grid  Name="MenuDo" Visibility="Hidden">
                                     <Button IsCancel="True" Click="Back" Width="120" Height="50" Margin="0,260,0,0"  VerticalAlignment="Center">
                                         <TextBlock FontSize="16" TextAlignment="Center">Назад</TextBlock>
@@ -115,7 +121,7 @@
                                         </Button>
                                     </Grid>
                                 </Grid>
-                                <Grid Name="ShowAllDo" Visibility="Visible">
+                                <Grid Name="ShowAllDo" Visibility="Hidden">
                                     <Grid Width="160" Height="200" Margin="0 0 0 70">
                                         <ListBox FontSize="13" x:Name="ArrayDo"/>
                                     </Grid>
@@ -133,7 +139,7 @@
                                         <TextBlock FontSize="16" TextAlignment="Center">Назад</TextBlock>
                                     </Button>
                                 </Grid>
-                                <Grid Name="PerInput" Visibility="Visible">
+                                <Grid Name="PerInput" Visibility="Hidden">
                                     
                                     <TextBlock Text="Перпендикулярность" Height="30" FontSize="15" TextAlignment="Center" Margin="0 -300 0 0"/>
                                     <Button Click="PerOne" Width="105" Height="20" Margin="0,163,0,0" Background="White" BorderBrush="LightGray">
